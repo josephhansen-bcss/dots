@@ -101,7 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 Math.pow(squareCenter.x - targetCenter.x, 2) +
                 Math.pow(squareCenter.y - targetCenter.y, 2)
             )
-            let lineLength = targetDistance - targetRect.width /2
+            let lineLength
+            if (targetRect.width > targetRect.height) {
+            lineLength = targetDistance - targetRect.height /2}
+            else {
+                lineLength = targetDistance - targetRect.width /2
+            }
 
             let lineLeft = squareCenter.x - lineLength
             let lineTop = squareCenter.y
