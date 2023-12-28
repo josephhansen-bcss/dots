@@ -9,7 +9,7 @@ body{
 #square1-over, #square2-over, #square3-over, #square4-over, #square-target{
     border-radius:5%;
     border: 3px dashed #f2f2f2;
-    transition: all 0.3s ease-out;
+    transition: border 0.3s ease-out;
     box-sizing: border-box;
     background-color: transparent;
 }

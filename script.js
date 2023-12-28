@@ -33,14 +33,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateSquareCenters()
 
+  squares.forEach((square, index) => {
+    let isDragging = false
+    let initialX
+    let initialY
+    let offsetX = 0
+    let offsetY = 0
+  
+    square.addEventListener('mousedown', (event) => {
+      isDragging = true
+      initialX = event.clientX
+      initialY = event.clientY
+      offsetX = square.offsetLeft
+      offsetY = square.offsetTop
+    })
+  
+    document.addEventListener('mousemove', (event) => {
+      if (isDragging) {
+        const deltaX = event.clientX - initialX
+        const deltaY = event.clientY - initialY
+        square.style.left = `${offsetX + deltaX}px`
+        square.style.top = `${offsetY + deltaY}px`
+        let line = document.getElementById('line')
+        line.style.opacity = '0.5'
+        square.dispatchEvent(new Event('mouseout'))
+        square.dispatchEvent(new Event('mouseover'))
+      }
+      updateSquareCenters()
+    })
+  
+    document.addEventListener('mouseup', () => {
+      isDragging = false
+    })
+    square.addEventListener('mouseup', () => {
+        line.style.opacity = '0.0'
+        square.dispatchEvent(new Event('mouseout'))
+        square.dispatchEvent(new Event('mouseover'))
+    })
+  })
+
   window.addEventListener('resize', () => {
-    targetRect = target.getBoundingClientRect();
+    targetRect = target.getBoundingClientRect()
     targetCenter = {
       x: targetRect.left + targetRect.width / 2,
       y: targetRect.top + targetRect.height / 2,
-    };
-    updateSquareCenters();
-  });
+    }
+    updateSquareCenters()
+  })
     
     squares.forEach((square, index) => {
 
