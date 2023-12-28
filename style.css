@@ -1,10 +1,38 @@
-#line{
-    transition: opacity, background-image, background 0.3s ease-out;
+#line, #line-cover{
+    transition: opacity 0.3s ease;
+}
+
+body{
+    background-color:rgb(0, 123, 255);
 }
 
 #square1-over, #square2-over, #square3-over, #square4-over, #square-target{
     border-radius:5%;
     border: 3px dashed #f2f2f2;
-    transition: border 0.3s ease-out;
+    transition: all 0.3s ease-out;
     box-sizing: border-box;
+    background-color: transparent;
 }
+
+#back, #back2, #back3 {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(10, 154, 251);
+    background-size: 40px 40px, 120px 120px, 120px 120px;
+    background-image: radial-gradient(circle, rgba(242, 242, 242, .2) 2px, rgba(0, 0, 0, 0) 1px), 
+    linear-gradient(to right, rgba(242, 242, 242, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(242, 242, 242, 0.1) 1px, transparent 1px);
+    background-position: 0 0, -20px -20px, -20px -20px;
+
+
+  }
+
+  #back2, #back3 {
+    z-index:4;
+  }
+
+
