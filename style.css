@@ -1,0 +1,10 @@
+#line{
+    transition: opacity, background-image, background 0.3s ease-out;
+}
+
+#square1-over, #square2-over, #square3-over, #square4-over, #square-target{
+    border-radius:5%;
+    border: 3px dashed #f2f2f2;
+    transition: border 0.3s ease-out;
+    box-sizing: border-box;
+}
