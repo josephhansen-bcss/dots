@@ -1,27 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const colored = false
+    let colored = false
 
-    const target = document.getElementById('square-target')
+    let target = document.getElementById('square-target')
     target.style.border = '3px solid #f2f2f2'
-    const targetRect = target.getBoundingClientRect()
-    const targetCenter = {
+    let targetRect = target.getBoundingClientRect()
+    let targetCenter = {
         x: targetRect.left + targetRect.width / 2,
         y: targetRect.top + targetRect.height / 2
         }
-    const square1 = document.getElementById('square1-over')
-    const square2 = document.getElementById('square2-over')
-    const square3 = document.getElementById('square3-over')
-    const square4 = document.getElementById('square4-over')
+    let square1 = document.getElementById('square1-over')
+    let square2 = document.getElementById('square2-over')
+    let square3 = document.getElementById('square3-over')
+    let square4 = document.getElementById('square4-over')
 
-    const squares = [square1, square2, square3, square4]
-    const colors = ['skyblue', 'lightslategray',
+    let squares = [square1, square2, square3, square4]
+    let colors = ['skyblue', 'lightslategray',
     'lightgreen', 'peachpuff']
 
-    const squareRects = squares.map(square => square.getBoundingClientRect())
-    const squareCenters = squareRects.map(squareRect => ({
+    let squareRects = squares.map(square => square.getBoundingClientRect())
+    
+    let squareCenters = []
+
+  function updateSquareCenters() {
+    squareCenters = squares.map((square) => {
+      let squareRect = square.getBoundingClientRect();
+      return {
         x: squareRect.left + squareRect.width / 2,
-        y: squareRect.top + squareRect.height / 2
-        }))
+        y: squareRect.top + squareRect.height / 2,
+      }
+    })
+  }
+
+  updateSquareCenters()
+
+  window.addEventListener('resize', () => {
+    targetRect = target.getBoundingClientRect();
+    targetCenter = {
+      x: targetRect.left + targetRect.width / 2,
+      y: targetRect.top + targetRect.height / 2,
+    };
+    updateSquareCenters();
+  });
     
     squares.forEach((square, index) => {
 
@@ -33,23 +52,23 @@ document.addEventListener('DOMContentLoaded', () => {
             square.style.border = `3px solid ${color}`} else {
                 square.style.border = `5px solid #f2f2f2`
             }
-            const squareCenter = squareCenters[index]
-            const targetAngle = Math.atan2(
+            let squareCenter = squareCenters[index]
+            let targetAngle = Math.atan2(
                 squareCenter.y - targetCenter.y,
                 squareCenter.x - targetCenter.x
             )
 
-            const targetDistance = Math.sqrt(
+            let targetDistance = Math.sqrt(
                 Math.pow(squareCenter.x - targetCenter.x, 2) +
                 Math.pow(squareCenter.y - targetCenter.y, 2)
             )
-            const lineLength = targetDistance - targetRect.width /2
+            let lineLength = targetDistance - targetRect.width /2
 
-            const lineLeft = squareCenter.x - lineLength
-            const lineTop = squareCenter.y
+            let lineLeft = squareCenter.x - lineLength
+            let lineTop = squareCenter.y
             let leftStop = lineLength * .4
             let rightStop = lineLength * .6
-            const line = document.getElementById('line')
+            let line = document.getElementById('line')
             line.style.position = 'absolute'
             line.style.left = `${lineLeft}px`
             line.style.top = `${lineTop}px`
@@ -109,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             square.style.border = '3px solid #f2f2f2'
             
-            const line = document.getElementById('line')
+            let line = document.getElementById('line')
             line.style.opacity = '0.5'
             if (colored){
             line.style.background = 'linear-gradient(to left, #f2f2f2, #f2f2f2)'
